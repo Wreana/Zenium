@@ -115,6 +115,7 @@ describe('the Zen preset (Linux/Windows)', () => {
     expect(key('bookmarkAllTabsKb')).toBeNull()
     expect(key('openFileKb')).toBeNull()
     expect(key('key_tabSearch')).toBeNull()
+    expect(key('key_fastTabSwitcher')).toEqual(ctrl('Tab'))
     expect(key('key_minimizeWindow', 'darwin')).toBeNull()
     // Ctrl+Shift+P is Zen's private window; the system print dialog has no key of its own here.
     expect(key('printSystemKb')).toBeNull()
@@ -136,8 +137,9 @@ describe('the Zen preset (macOS)', () => {
     expect(key('zen-workspace-switch-10', 'darwin')).toEqual(ctrl('0'))
   })
 
-  it('keeps Ctrl+Tab (not Cmd+Tab) for cycling tabs', () => {
-    expect(key('key_nextTab', 'darwin')).toEqual(ctrl('Tab'))
+  it('opens tab search with Ctrl+Tab, not Cmd+Tab', () => {
+    expect(key('key_fastTabSwitcher', 'darwin')).toEqual(ctrl('Tab'))
+    expect(key('key_nextTab', 'darwin')).toEqual(ctrl('PageDown'))
   })
 })
 
@@ -333,6 +335,7 @@ describe('the Chrome preset', () => {
     expect(chrome('key_webconsole')).toEqual(ctrl('j', { shift: true }))
     expect(chrome('openFileKb')).toEqual(ctrl('o'))
     expect(chrome('key_tabSearch')).toEqual(ctrl('a', { shift: true }))
+    expect(chrome('key_fastTabSwitcher')).toEqual(ctrl('Tab'))
     expect(chrome('zen-duplicate-tab')).toEqual(ctrl('k', { shift: true }))
     expect(chrome('printKb')).toEqual(ctrl('p'))
     expect(chrome('printSystemKb')).toEqual(ctrl('p', { shift: true }))
@@ -357,10 +360,7 @@ describe('the Chrome preset', () => {
     expect(chrome('printSystemKb', 'darwin')).toEqual(cmd('p', { alt: true }))
     expect(chrome('goHome', 'darwin')).toEqual(cmd('h', { shift: true }))
     expect(chrome('key_search', 'darwin')).toEqual(cmd('f', { alt: true }))
-    expect(extras('key_nextTab', 'darwin', 'chrome')).toEqual([
-      ctrl('PageDown'),
-      cmd('ArrowRight', { alt: true })
-    ])
+    expect(extras('key_nextTab', 'darwin', 'chrome')).toEqual([cmd('ArrowRight', { alt: true })])
     expect(chrome('key_quitApplication', 'darwin')).toEqual(cmd('q'))
     expect(chrome('key_quitApplication', 'linux')).toEqual(ctrl('q', { shift: true }))
   })

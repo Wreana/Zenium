@@ -933,7 +933,7 @@ describe('the macOS menu bar', () => {
       expectChord('Search Tabs', 'tab.search')
       // Chrome's chords, in the chrome preset; Add Tab to New Split View has none in Chrome and
       // shows the key table's own (the View menu's New Empty Split View row's, the same action).
-      expect(chords['Select Next Tab']).toBe('Ctrl+Tab')
+      expect(chords['Select Next Tab']).toBe('Ctrl+PageDown')
       expect(chords['Select Previous Tab']).toBe('Ctrl+Shift+Tab')
       expect(chords['Duplicate Tab']).toBe('Cmd+Shift+K')
       expect(chords['Pin Tab']).toBe('Cmd+Ctrl+P')

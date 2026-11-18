@@ -253,6 +253,8 @@ const FOCUS_CHROME_EVENTS = new Set<EventName>([
   'menu.show',
   'menu.app',
   'tabsearch.open',
+  'tabswitcher.open',
+  'tabswitcher.commit',
   'overview.open',
   'overview.command',
   'bookmark.star',

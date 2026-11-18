@@ -1912,7 +1912,7 @@ function tabsSection({ state, set }: SectionContext): RowGroup[] {
         {
           kind: 'switch',
           id: 'ctrl-tab-section',
-          label: 'Ctrl+Tab stays within Essentials or regular tabs',
+          label: 'Next tab stays within Essentials or regular tabs',
           checked: s.ctrlTabCyclesWithinSection,
           onChange: (v) => set({ ctrlTabCyclesWithinSection: v })
         },

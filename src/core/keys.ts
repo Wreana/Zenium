@@ -12,6 +12,8 @@ import type { ZenWindow } from './window'
 export class KeyboardHandler {
   /** Tabs whose focused frame reports a text field under the keyboard (`setEditing`). */
   private readonly editing = new Set<string>()
+  /** Windows with a held Ctrl+Tab fast switcher, whose modifier release commits the selection. */
+  private readonly fastTabSwitchWindows = new Set<ZenWindow>()
 
   constructor(private readonly browser: Browser) {}
 
@@ -32,7 +34,15 @@ export class KeyboardHandler {
     // The quit chord held quits (session-08): any key coming up while the hold runs releases it
     // – Chrome's panel waits for the next key up, whichever key – so the release is read here,
     // before the table, which sees key downs alone.
-    if (input.type === 'keyUp') this.browser.quitHold.keyUp()
+    if (input.type === 'keyUp') {
+      this.browser.quitHold.keyUp()
+      const modifierReleased = input.key === 'Control' || input.key === 'Meta'
+      const tabReleasedAfterModifier =
+        input.key === 'Tab' && !input.control && !input.meta && !input.alt
+      if ((modifierReleased || tabReleasedAfterModifier) && this.fastTabSwitchWindows.delete(win)) {
+        this.browser.emit('tabswitcher.commit', undefined, win)
+      }
+    }
     if (input.type !== 'keyDown') return false
     if (isModifierKey(input.key)) return false
     // The Settings recorder owns the chrome's keys while it listens: the chord it records must
@@ -70,6 +80,12 @@ export class KeyboardHandler {
       // macOS, on to the menu bar's Quit, whose quit request yields to the running hold
       // (`Browser.requestQuit`). Off, the chord quits at once and is consumed as before.
       if (shortcut.action === 'app.quit' && this.browser.quitHold.keyDown(win)) return false
+      if (shortcut.action === 'tab.fastSwitch') {
+        this.fastTabSwitchWindows.add(win)
+        this.browser.actions.run(shortcut.action, { sourceTabId, win })
+        // Keep the native modifier release observable so the main process can commit the pick.
+        return false
+      }
       if (input.isAutoRepeat && !REPEATABLE.has(shortcut.action)) return true
       if (shortcut.unsupported) {
         this.browser.toast(`"${shortcut.label}" is not available in this build yet.`, 'info', win)

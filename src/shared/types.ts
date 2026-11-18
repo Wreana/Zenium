@@ -2842,6 +2842,8 @@ export type ShortcutAction =
   | 'tab.duplicate'
   /** Chrome's tab search (Ctrl+Shift+A); reserved, does nothing until the tab search ships. */
   | 'tab.search'
+  /** The compact thumbnail switcher opened by Ctrl+Tab. */
+  | 'tab.fastSwitch'
   | 'sidebar.toggle'
   | 'glance.expand'
   | 'space.new'
@@ -7846,6 +7848,8 @@ export interface Events {
    * sidebar's top row with the keyboard in its field (`tab.searchCandidates` lists the tabs).
    */
   'tabsearch.open': void
+  'tabswitcher.open': void
+  'tabswitcher.commit': void
   /**
    * The crash page's Show tabs asked for the tab switcher (ERR-15: a page that crashed twice
    * within the minute suggests closing other tabs): the phone chrome opens its overview.

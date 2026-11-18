@@ -189,6 +189,8 @@ export class Actions {
       case 'tab.search':
         // Chrome's tab search: the chrome opens the popover from the sidebar's top row.
         return this.browser.emit('tabsearch.open', undefined, win)
+      case 'tab.fastSwitch':
+        return this.browser.emit('tabswitcher.open', undefined, win)
       case 'glance.expand':
         return tabs.expandGlance(win)
 

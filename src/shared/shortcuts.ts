@@ -571,6 +571,13 @@ const DEFS: Def[] = [
     chrome: { key: 'k', mods: ACCEL_SHIFT }
   },
   {
+    id: 'key_fastTabSwitcher',
+    action: 'tab.fastSwitch',
+    group: 'windowAndTabManagement',
+    hidden: true,
+    ...both({ key: 'Tab', mods: CTRL })
+  },
+  {
     // Chrome's tab search popover (tabs-17).
     id: 'key_tabSearch',
     action: 'tab.search',
@@ -649,14 +656,11 @@ const DEFS: Def[] = [
     id: 'key_nextTab',
     action: 'tab.next',
     group: 'windowAndTabManagement',
-    zen: { key: 'Tab', mods: CTRL, extra: [{ key: 'PageDown', mods: ACCEL }] },
+    zen: { key: 'PageDown', mods: ACCEL },
     chrome: {
-      key: 'Tab',
+      key: 'PageDown',
       mods: CTRL,
-      extra: [
-        { key: 'PageDown', mods: CTRL },
-        { key: 'ArrowRight', mods: META_ALT, platforms: MAC }
-      ]
+      extra: [{ key: 'ArrowRight', mods: META_ALT, platforms: MAC }]
     }
   },
   {
@@ -1216,6 +1220,7 @@ export const CHROMES_HELPER_ROWS: ReadonlySet<ShortcutAction> = new Set<Shortcut
   'nav.reloadSkipCache',
   'tab.close',
   'tab.search',
+  'tab.fastSwitch',
   'tab.next',
   'tab.prev',
   'tab.select1',

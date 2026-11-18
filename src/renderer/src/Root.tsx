@@ -19,6 +19,7 @@ import { SendTabSheetLayer } from './components/phone/SendTabSheet'
 import { GroupEditorLayer } from './components/sidebar/GroupEditorBubble'
 import { SiteInfoLayer } from './components/siteinfo/SiteInfoSheet'
 import { TabSearchLayer } from './components/tabsearch/TabSearchPopover'
+import { FastTabSwitcherLayer } from './components/tabsearch/FastTabSwitcher'
 import { VoiceSearchLayer } from './components/voice/VoiceSearchSheet'
 import { SheetPresence } from './lib/motion/presence'
 import { TranslateSelectionLayer } from './components/translate/SelectionPopover'
@@ -40,6 +41,7 @@ export function Root(): JSX.Element {
       <TranslateSelectionLayer />
       <DefineLayer />
       <TabSearchLayer />
+      <FastTabSwitcherLayer />
       <GroupEditorLayer />
       <BarEditorLayer />
       <ExtensionsSheetLayer />

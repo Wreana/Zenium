@@ -79,6 +79,7 @@ import { overviewMenuRequest } from '@renderer/lib/overviewMenuRequest'
 import { openGroupEditor } from '@renderer/lib/groupEditor'
 import { openOverview } from '@renderer/lib/gestures/stage'
 import { toggleTabSearch } from '@renderer/lib/tabSearch'
+import { commitFastTabSwitcher, openFastTabSwitcher } from '@renderer/lib/fastTabSwitcher'
 import { openTranslateSelection } from '@renderer/lib/translate'
 import { openDefine } from '@renderer/lib/define'
 import { browserStore } from '@renderer/lib/ui'
@@ -253,6 +254,16 @@ export function useMainEvents(): void {
         // switcher's own search.
         if (isPhone()) return
         toggleTabSearch()
+      }),
+      onEvent('tabswitcher.open', () => {
+        if (isPhone()) return
+        run('focus.chrome', undefined)
+        openFastTabSwitcher()
+      }),
+      onEvent('tabswitcher.commit', () => {
+        if (isPhone()) return
+        commitFastTabSwitcher()
+        run('focus.content', undefined)
       }),
       onEvent('overview.open', () => {
         // The crash page's Show tabs (ERR-15): the phone's tab overview, the switcher the page

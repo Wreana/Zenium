@@ -463,7 +463,7 @@ const INVENTORY: Record<string, readonly string[]> = {
   tabs: [
     'Open new tabs',
     'Show separator between pinned and regular tabs',
-    'Ctrl+Tab stays within Essentials or regular tabs',
+    'Next tab stays within Essentials or regular tabs',
     // W6-3: the "Restore previous session on startup" switch became Settings › On startup's
     // choice on the windowed hosts (the phone keeps the switch).
     'When Zenium starts',

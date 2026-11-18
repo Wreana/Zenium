@@ -84,6 +84,7 @@ export const ACTIONS = {
   'tab.reopenClosed': { menu: 'Reopen Closed Tab' },
   'tab.duplicate': { menu: 'Duplicate Tab' },
   'tab.search': { menu: 'Search Tabs' },
+  'tab.fastSwitch': { menu: 'Fast Tab Switcher' },
   'window.new': { menu: 'New Window' },
   'window.newPrivate': { menu: 'New Private Window' },
   'window.close': { menu: 'Close Window' },

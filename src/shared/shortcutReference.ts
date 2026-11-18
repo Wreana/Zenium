@@ -47,7 +47,7 @@ export function chromeReference(platform: Platform): ReferenceBinding[] {
     ref('w', ACCEL, 'Close tab', ['tab.close']),
     ref('w', ACCEL_SHIFT, 'Close window', ['window.close']),
     ref('t', ACCEL_SHIFT, 'Reopen closed tab', ['tab.reopenClosed']),
-    ref('Tab', CTRL, 'Next tab', ['tab.next']),
+    ref('Tab', CTRL, 'Next tab', ['tab.next', 'tab.fastSwitch']),
     ref('Tab', CTRL_SHIFT, 'Previous tab', ['tab.prev']),
     ref('PageDown', CTRL, 'Next tab', ['tab.next']),
     ref('PageUp', CTRL, 'Previous tab', ['tab.prev']),
