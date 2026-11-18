@@ -960,7 +960,7 @@ describe('SuggestionService: zero-suggest (omnibox-20)', () => {
     ])
   })
 
-  it('caps the recent searches at eight, most recent first', async () => {
+  it('caps the recent searches at three, most recent first', async () => {
     const { suggestions, shortcuts, win } = setup()
     for (let i = 0; i < 10; i += 1) {
       shortcuts.learn(`q${i}`, {
@@ -971,7 +971,7 @@ describe('SuggestionService: zero-suggest (omnibox-20)', () => {
       })
     }
     const rows = await suggestions.suggest('', null, win)
-    expect(rows.filter((r) => r.group === 'Recent searches')).toHaveLength(8)
+    expect(rows.filter((r) => r.group === 'Recent searches')).toHaveLength(3)
   })
 
   it('shows none in a private window, and none with history suggestions off', async () => {
@@ -1506,7 +1506,7 @@ describe('SuggestionService: zero-suggest on the touch layouts (OMN-04)', () => 
         at: NOW + 10_000 + i
       })
     const capped = await suggestions.suggest('', null, win)
-    expect(capped.filter((r) => r.group === 'Recent searches')).toHaveLength(8)
+    expect(capped.filter((r) => r.group === 'Recent searches')).toHaveLength(3)
     expect(capped.filter((r) => r.group === 'Recent searches')[0].title).toBe('q9')
   })
 

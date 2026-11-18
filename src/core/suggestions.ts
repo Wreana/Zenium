@@ -89,8 +89,8 @@ export const RELEVANCE = {
 
 // Zero-suggest's section names live with the shared module the chrome reads them from too.
 export { RECENT_SEARCHES_GROUP, RECENTLY_VISITED_GROUP }
-/** Remembered searches shown on focus at most (Chrome shows up to eight zero-suggest rows). */
-export const RECENT_SEARCHES_MAX = 8
+/** Remembered searches shown on focus at most. Keep zero-suggest focused on the latest searches. */
+export const RECENT_SEARCHES_MAX = 3
 /** Recent pages shown on focus at most, under the recent searches. */
 const RECENT_PAGES_MAX = 8
 

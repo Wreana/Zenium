@@ -1806,26 +1806,6 @@ export function Urlbar({ state, urlbar, area, phoneEdge, anchor }: Props): JSX.E
             {rows(false)}
           </ul>
         )}
-        {/* The hint strip (§4: 13 on the small line, deemphasised), the key chips 20 tall. */}
-        <div className="zen-omnibox-footer zen-kbd-hint flex shrink-0 items-center">
-          <span>
-            <kbd className="zen-omnibox-kbd">↵</kbd> Open
-          </span>
-          <span>
-            <kbd className="zen-omnibox-kbd">Alt ↵</kbd> New tab
-          </span>
-          <span>
-            <kbd className="zen-omnibox-kbd">Ctrl ↵</kbd> www.com
-          </span>
-          <span>
-            <kbd className="zen-omnibox-kbd">Tab</kbd> Complete
-          </span>
-          <span>
-            <kbd className="zen-omnibox-kbd">@</kbd> Engines, bookmarks, history, tabs
-          </span>
-          <span className="flex-1" />
-          <span className="min-w-0 truncate">Type a command like “compact mode”</span>
-        </div>
       </div>
     </div>
   )

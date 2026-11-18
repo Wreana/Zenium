@@ -15791,9 +15791,8 @@ ol.zen-page-prose-list {
  * and below the last. The keyboard's highlight and the pointer's hover are two things –
  * hovering never moves the highlight – and both are the row's `--v2-fill` (§9.6: a cursor, not
  * a selection). The keyword chip is a v2 pill: 20 tall, 13/600, padding 0 8, fill on
- * deemphasised ink; the hint strip at the foot is 13 on the small line in the deemphasised ink
- * with its key chips 20 tall. When the list overflows it scrolls under the chassis' overlay
- * scrollbar (§9.20). Page tokens only; no blur.
+ * deemphasised ink. When the list overflows it scrolls under the chassis' overlay scrollbar
+ * (§9.20). Page tokens only; no blur.
  */
 @layer components {
   .zen-omnibox {
@@ -15810,7 +15809,7 @@ ol.zen-page-prose-list {
     box-shadow: var(--v2-shadow-panel);
   }
   .zen-omnibox-input-row {
-    height: 62px;
+    height: 54px;
     gap: 12px;
     padding: 0 16px;
   }
@@ -15950,29 +15949,6 @@ ol.zen-page-prose-list {
     height: var(--v2-icon);
     stroke-width: var(--v2-icon-stroke);
   }
-  /* The hint strip (§4): a 32 row – the small line at `--v2-row-pad` – under a hairline. */
-  .zen-omnibox-footer {
-    min-height: var(--v2-row);
-    gap: 12px;
-    padding: var(--v2-row-pad) 16px;
-    border-top: 1px solid var(--v2-border);
-    color: var(--v2-text-deemphasized);
-    font-size: var(--v2-font-small);
-    line-height: var(--v2-line-small);
-    white-space: nowrap;
-  }
-  /* A key chip in the strip: the small line's 20 box at the control radius on the fill. */
-  .zen-omnibox-kbd {
-    display: inline-flex;
-    align-items: center;
-    height: var(--v2-line-small-box);
-    padding: 0 6px;
-    border-radius: var(--v2-radius-control);
-    background: var(--v2-fill);
-    font-family: var(--font-sans);
-    font-size: var(--v2-font-small);
-    line-height: var(--v2-line-small);
-  }
   /*
    * The empty split pane's resting field (split-04, `EmptyPane`): the bar's surface above on
    * the bar's own box, the field row's gap and gutter, the placeholder in the field's
@@ -16011,7 +15987,7 @@ ol.zen-page-prose-list {
  * rule above (§9.20), which lists this body.
  */
 .zen-v2-row.zen-omnibox-row {
-  min-height: calc(var(--v2-line-body-box) + 30px);
+  min-height: calc(var(--v2-line-body-box) + 24px);
 }
 .zen-v2-row.zen-omnibox-row[data-selected='true'],
 .zen-v2-row.zen-omnibox-row[data-selected='true']:hover {
