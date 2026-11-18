@@ -87,6 +87,8 @@ const CAPTION_OVERLAY = process.platform === 'win32'
  * comes up without a document load; then it is closed to give its memory back.
  */
 const POPUP_SURFACE_IDLE_MS = 30_000
+/** electron-vite's renderer port, used when its child process environment is incomplete. */
+const DEV_RENDERER_URL = 'http://localhost:41733'
 
 /** Where the factory keeps the chrome documents that may send commands for a window. */
 export interface ChromeContentsRegistry {
@@ -411,8 +413,8 @@ export class ElectronWindow implements WindowHost {
     // its rows read the layer (the private New Tab's cookie line, the controlled Settings rows).
     startupHold.run(() => {
       if (win.isDestroyed()) return
-      if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-        void win.loadURL(process.env['ELECTRON_RENDERER_URL'])
+      if (is.dev) {
+        void win.loadURL(process.env['ELECTRON_RENDERER_URL'] ?? DEV_RENDERER_URL)
       } else {
         void win.loadFile(join(__dirname, '../renderer/index.html'))
       }
@@ -698,8 +700,8 @@ export class ElectronWindow implements WindowHost {
       this.registry.remove(id)
       if (this.popup === view) this.popup = null
     })
-    if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-      const url = new URL(process.env['ELECTRON_RENDERER_URL'])
+    if (is.dev) {
+      const url = new URL(process.env['ELECTRON_RENDERER_URL'] ?? DEV_RENDERER_URL)
       url.searchParams.set('surface', 'popup')
       void wc.loadURL(url.toString())
     } else {
